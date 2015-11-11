@@ -19,6 +19,7 @@ packageFile = r"{{packageFile}}"
 restartAfterDeploy = r"{{restartAfterDeploy}}"
 deployOptions = r"{{deployOptions}}"
 
+
 class WebSphere:
     def listApplications(self):
         print "[LIST APPLICATIONS]", host
@@ -103,14 +104,14 @@ class WebSphere:
 
         options = ['-distributeApp', '-appname', applicationName]
         if "" != deployOptions:
-            options = deployOption.split().extend(options)
+            options[:0] = deployOptions.split()
 
         try:
             if "" != cluster:
-                serverMapping = 'WebSphere:cell=' + cell + ',cluster=' + cluster
+                serverMapping = 'WebSphere:cluster=' + cluster
                 if "" != webservers:
                     for webserver in webservers.split(','):
-                        serverMapping += '+WebSphere:cell=' + cell + ',server=' + webserver.strip()
+                        serverMapping += '+WebSphere:server=' + webserver.strip()
                 options += ['-cluster', cluster, '-MapModulesToServers', [['.*', '.*', serverMapping]]]
             else:
                 serverMapping = 'WebSphere:server=' + server

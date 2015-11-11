@@ -16,6 +16,7 @@ public class Command {
 
 	private String executable;
 	private String workingDir;
+	private String buildScriptPath;
 	private Map<String, String> args = Maps.newLinkedHashMap();
 
 	public Command() {
@@ -52,6 +53,14 @@ public class Command {
 
 	public void addArg(String name, String value) {
 		args.put(name, value);
+	}
+
+	public String getBuildScriptPath() {
+		return buildScriptPath;
+	}
+
+	public void setBuildScriptPath(String buildScriptPath) {
+		this.buildScriptPath = buildScriptPath;
 	}
 
 	public List<String> getArgsAsList() {

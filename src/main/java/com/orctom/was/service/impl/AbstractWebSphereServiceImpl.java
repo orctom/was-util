@@ -17,11 +17,11 @@ import java.io.IOException;
  */
 public abstract class AbstractWebSphereServiceImpl implements IWebSphereService {
 
-	private WebSphereModel model;
-	private String workingDir;
+	protected WebSphereModel model;
+	protected String workingDir;
 
-	private static final String TEMPLATE = "jython/websphere.py";
-	private static final String TEMPLATE_EXT = "py";
+	protected static final String TEMPLATE = "jython/websphere.py";
+	protected static final String TEMPLATE_EXT = "py";
 
 	public AbstractWebSphereServiceImpl(WebSphereModel model, String workingDir) {
 		this.model = model;
@@ -63,9 +63,6 @@ public abstract class AbstractWebSphereServiceImpl implements IWebSphereService 
 	protected final void execute(String task) {
 		try {
 			Command command = getCommand(task);
-			if (model.isVerbose()) {
-				System.out.println(model.toString());
-			}
 			executeCommand(command);
 		} catch (Exception e) {
 			throw new WebSphereServiceException(e.getMessage(), e);
@@ -75,6 +72,7 @@ public abstract class AbstractWebSphereServiceImpl implements IWebSphereService 
 	protected Command getCommand(String task) throws IOException {
 		File buildScript = CommandUtils.getBuildScript(task, TEMPLATE, model, workingDir, TEMPLATE_EXT);
 		Command command = new Command();
+		command.setBuildScriptPath(buildScript.getAbsolutePath());
 		command.setExecutable(CommandUtils.getExecutable(model.getWasHome(), "wsadmin").getAbsolutePath());
 		command.setWorkingDir(workingDir);
 		command.addArg("-conntype", model.getConnectorType());
