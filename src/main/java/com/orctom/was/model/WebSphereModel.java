@@ -28,6 +28,7 @@ public class WebSphereModel {
 	private String script;
 	private String scriptArgs;
 	private String javaoption;
+	private String deployOptions;
 	private boolean failOnError;
 	private boolean verbose;
 
@@ -243,6 +244,15 @@ public class WebSphereModel {
 		return this;
 	}
 
+	public String getDeployOptions() {
+		return deployOptions;
+	}
+
+	public WebSphereModel setDeployOptions(String deployOptions) {
+		this.deployOptions = deployOptions;
+		return this;
+	}
+
 	public boolean isFailOnError() {
 		return failOnError;
 	}
@@ -261,7 +271,7 @@ public class WebSphereModel {
 		return this;
 	}
 
-	public boolean shouldRestartAfterDeploy() {
+	public boolean isRestartAfterDeploy() {
 		return restartAfterDeploy;
 	}
 

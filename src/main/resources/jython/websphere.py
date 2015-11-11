@@ -17,7 +17,7 @@ parentLast = r"{{parentLast}}"
 webModuleParentLast = r"{{webModuleParentLast}}"
 packageFile = r"{{packageFile}}"
 restartAfterDeploy = r"{{restartAfterDeploy}}"
-
+deployOptions = r"{{deployOptions}}"
 
 class WebSphere:
     def listApplications(self):
@@ -101,14 +101,16 @@ class WebSphere:
         print time.strftime("%Y-%b-%d %H:%M:%S %Z")
         print '-' * 60
 
-        options = ['-deployws', '-distributeApp', '-appname', applicationName]
+        options = ['-distributeApp', '-appname', applicationName]
+        if "" != deployOptions:
+            options = deployOption.split().extend(options)
 
         try:
             if "" != cluster:
                 serverMapping = 'WebSphere:cell=' + cell + ',cluster=' + cluster
                 if "" != webservers:
                     for webserver in webservers.split(','):
-                        serverMapping += '+WebSphere:cell=' + cell + ',server=' + webserver
+                        serverMapping += '+WebSphere:cell=' + cell + ',server=' + webserver.strip()
                 options += ['-cluster', cluster, '-MapModulesToServers', [['.*', '.*', serverMapping]]]
             else:
                 serverMapping = 'WebSphere:server=' + server
