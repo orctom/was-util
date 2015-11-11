@@ -23,9 +23,9 @@ public abstract class AbstractWebSphereServiceImpl implements IWebSphereService 
 	private static final String TEMPLATE = "jython/websphere.py";
 	private static final String TEMPLATE_EXT = "py";
 
-	public AbstractWebSphereServiceImpl(WebSphereModel model, String targetDir) {
+	public AbstractWebSphereServiceImpl(WebSphereModel model, String workingDir) {
 		this.model = model;
-		this.workingDir = CommandUtils.getWorkingDir(targetDir, TEMPLATE_EXT);
+		this.workingDir = workingDir;
 	}
 
 	public void restartServer() {

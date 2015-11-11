@@ -21,10 +21,6 @@ public class CommandUtils {
 
 	private static final String TIMESTAMP_FORMAT = "yyyyMMdd-HHmmss-SSS";
 
-	public static String getWorkingDir(String targetFolder, String templateExt) {
-		return targetFolder + File.separator + Constants.PLUGIN_ID + File.separator + templateExt + File.separator;
-	}
-
 	public static File getExecutable(final String wasHome, final String name) {
 		if (Strings.isNullOrEmpty(wasHome)) {
 			throw new WebSphereServiceException("WAS_HOME is not set");
