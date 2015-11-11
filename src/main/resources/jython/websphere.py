@@ -7,6 +7,7 @@ host = r"{{host}}"
 cell = r"{{cell}}"
 cluster = r"{{cluster}}"
 server = r"{{server}}"
+webservers = r"{{webservers}}"
 node = r"{{node}}"
 applicationName = r"{{applicationName}}"
 contextRoot = r"{{contextRoot}}"
@@ -59,18 +60,13 @@ class WebSphere:
         print '-' * 60
         try:
             if "" != cluster:
-                cell = AdminControl.getCell()
-                managedNodeNames = AdminTask.listManagedNodes().splitlines()
-                for managedNodeName in managedNodeNames:
-                    appManager = AdminControl.queryNames(
-                        'type=ApplicationManager,process=' + server + ',node=' + managedNodeName + ',cell=' + cell + ',*')
-                    print "Starting " + applicationName + " on " + managedNodeName
+                print AdminApplication.startApplicationOnCluster(applicationName, cluster)
             elif "" != node:
                 appManager = AdminControl.queryNames('node=' + node + ',type=Server,process=' + server + ',*')
+                print AdminControl.invoke(appManager, 'startApplication', applicationName)
             else:
                 appManager = AdminControl.queryNames('type=Server,process=' + server + ',*')
-            print AdminControl.invoke(appManager, 'startApplication', applicationName)
-            # AdminApplication.startApplicationOnCluster(applicationName, cluster)
+                print AdminControl.invoke(appManager, 'startApplication', applicationName)
         except:
             print "FAILED to start application:"
             print '-' * 10
@@ -85,18 +81,13 @@ class WebSphere:
         print '-' * 60
         try:
             if "" != cluster:
-                cell = AdminControl.getCell()
-                managedNodeNames = AdminTask.listManagedNodes().splitlines()
-                for managedNodeName in managedNodeNames:
-                    appManager = AdminControl.queryNames(
-                        'type=ApplicationManager,process=' + server + ',node=' + managedNodeName + ',cell=' + cell + ',*')
-                    print "Starting " + applicationName + " on " + managedNodeName
+                print AdminApplication.stopApplicationOnCluster(applicationName, cluster)
             elif "" != node:
                 appManager = AdminControl.queryNames('node=' + node + ',type=Server,process=' + server + ',*')
+                print AdminControl.invoke(appManager, 'stopApplication', applicationName)
             else:
                 appManager = AdminControl.queryNames('type=Server,process=' + server + ',*')
-            print AdminControl.invoke(appManager, 'stopApplication', applicationName)
-            # AdminApplication.stopApplicationOnCluster(applicationName, cluster)
+                print AdminControl.invoke(appManager, 'stopApplication', applicationName)
         except:
             print "FAILED to stop application:"
             print '-' * 10
@@ -114,14 +105,10 @@ class WebSphere:
 
         try:
             if "" != cluster:
-                cell = AdminControl.getCell()
                 serverMapping = 'WebSphere:cell=' + cell + ',cluster=' + cluster
-                unmanagedNodeNames = AdminTask.listUnmanagedNodes().splitlines()
-                for unmanagedNodeName in unmanagedNodeNames:
-                    webservers = AdminTask.listServers('[-serverType WEB_SERVER -nodeName ' + unmanagedNodeName + ']').splitlines()
-                    for webserver in webservers:
-                        webserverName = AdminConfig.showAttribute(webserver, 'name')
-                        serverMapping = serverMapping + '+WebSphere:cell=' + cell + ',node=' + unmanagedNodeName + ',server=' + webserverName
+                if "" != webservers:
+                    for webserver in webservers.split(','):
+                        serverMapping += '+WebSphere:cell=' + cell + ',server=' + webserver
                 options += ['-cluster', cluster, '-MapModulesToServers', [['.*', '.*', serverMapping]]]
             else:
                 serverMapping = 'WebSphere:server=' + server

@@ -15,7 +15,7 @@ public class WebSphereModel {
 	private String cell;
 	private String node;
 	private String server;
-	private String webserver;
+	private String webservers;
 	private String virtualHost;
 	private String user;
 	private String password;
@@ -135,12 +135,12 @@ public class WebSphereModel {
 		return this;
 	}
 
-	public String getWebserver() {
-		return webserver;
+	public String getWebservers() {
+		return webservers;
 	}
 
-	public WebSphereModel setWebserver(String webserver) {
-		this.webserver = webserver;
+	public WebSphereModel setWebservers(String webservers) {
+		this.webservers = webservers;
 		return this;
 	}
 
@@ -290,7 +290,7 @@ public class WebSphereModel {
 				", cell='" + cell + '\'' +
 				", node='" + node + '\'' +
 				", server='" + server + '\'' +
-				", webserver='" + webserver + '\'' +
+				", webservers='" + webservers + '\'' +
 				", virtualHost='" + virtualHost + '\'' +
 				", user='" + user + '\'' +
 				", password='" + password + '\'' +
