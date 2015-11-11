@@ -1,5 +1,6 @@
-package com.orctom.gradle.plugins.was.model;
+package com.orctom.was.model;
 
+import com.google.common.base.Strings;
 import com.google.common.collect.Maps;
 
 import java.util.ArrayList;
@@ -57,7 +58,9 @@ public class Command {
 		List<String> list = new ArrayList<String>(2 * args.size());
 		for (Map.Entry<String, String> entry : args.entrySet()) {
 			list.add(entry.getKey());
-			list.add(entry.getValue());
+			if (!Strings.isNullOrEmpty(entry.getValue())) {
+				list.add(entry.getValue());
+			}
 		}
 		return list;
 	}
@@ -65,8 +68,21 @@ public class Command {
 	public List<String> getArgEntriesAsList() {
 		List<String> list = new ArrayList<String>(args.size());
 		for (Map.Entry<String, String> entry : args.entrySet()) {
-			list.add(entry.getKey() + " " + entry.getValue());
+			list.add((entry.getKey() + " " + entry.getValue()).trim());
 		}
 		return list;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder str = new StringBuilder();
+		if (!Strings.isNullOrEmpty(workingDir)) {
+			str.append("cd ").append(workingDir).append(" && ");
+		}
+		str.append(executable).append(" ");
+		for (Map.Entry<String, String> entry : args.entrySet()) {
+			str.append(entry.getKey()).append(" ").append(entry.getValue()).append(" ");
+		}
+		return str.toString();
 	}
 }

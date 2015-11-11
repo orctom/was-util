@@ -1,4 +1,4 @@
-package com.orctom.gradle.plugins.was.service;
+package com.orctom.was.service;
 
 /**
  * Created by CH on 3/11/14.

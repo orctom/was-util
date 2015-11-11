@@ -1,4 +1,4 @@
-package com.orctom.gradle.plugins.was.utils;
+package com.orctom.was.utils;
 
 /**
  * Created by hao on 11/9/15.

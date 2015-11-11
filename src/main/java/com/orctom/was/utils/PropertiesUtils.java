@@ -1,4 +1,4 @@
-package com.orctom.gradle.plugins.was.utils;
+package com.orctom.was.utils;
 
 import java.io.File;
 import java.io.FileInputStream;

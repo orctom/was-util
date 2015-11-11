@@ -1,16 +1,15 @@
-package com.orctom.gradle.plugins.was.service.impl;
+package com.orctom.was.service.impl;
 
 import com.google.common.base.Splitter;
 import com.google.common.base.Strings;
-import com.orctom.gradle.plugins.was.model.Command;
-import com.orctom.gradle.plugins.was.model.WebSphereModel;
-import com.orctom.gradle.plugins.was.model.WebSphereServiceException;
-import com.orctom.gradle.plugins.was.service.IWebSphereService;
-import com.orctom.gradle.plugins.was.utils.CommandUtils;
+import com.orctom.was.model.Command;
+import com.orctom.was.model.WebSphereModel;
+import com.orctom.was.model.WebSphereServiceException;
+import com.orctom.was.service.IWebSphereService;
+import com.orctom.was.utils.CommandUtils;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * Using jython

@@ -1,4 +1,4 @@
-package com.orctom.gradle.plugins.was.model;
+package com.orctom.was.model;
 
 
 /**

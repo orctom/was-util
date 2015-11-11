@@ -1,12 +1,12 @@
-package com.orctom.gradle.plugins.was.utils;
+package com.orctom.was.utils;
 
 
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
 import com.google.common.base.Strings;
-import com.orctom.gradle.plugins.was.model.WebSphereModel;
-import com.orctom.gradle.plugins.was.model.WebSphereServiceException;
+import com.orctom.was.model.WebSphereModel;
+import com.orctom.was.model.WebSphereServiceException;
 
 import java.io.*;
 import java.text.SimpleDateFormat;

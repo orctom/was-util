@@ -1,4 +1,4 @@
-package com.orctom.gradle.plugins.was.model;
+package com.orctom.was.model;
 
 import com.google.common.base.Strings;
 
@@ -15,6 +15,7 @@ public class WebSphereModel {
 	private String cell;
 	private String node;
 	private String server;
+	private String webserver;
 	private String virtualHost;
 	private String user;
 	private String password;
@@ -131,6 +132,15 @@ public class WebSphereModel {
 
 	public WebSphereModel setServer(String server) {
 		this.server = server;
+		return this;
+	}
+
+	public String getWebserver() {
+		return webserver;
+	}
+
+	public WebSphereModel setWebserver(String webserver) {
+		this.webserver = webserver;
 		return this;
 	}
 
@@ -280,6 +290,7 @@ public class WebSphereModel {
 				", cell='" + cell + '\'' +
 				", node='" + node + '\'' +
 				", server='" + server + '\'' +
+				", webserver='" + webserver + '\'' +
 				", virtualHost='" + virtualHost + '\'' +
 				", user='" + user + '\'' +
 				", password='" + password + '\'' +
