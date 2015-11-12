@@ -4,7 +4,7 @@
 
     <groupId>com.orctom.was</groupId>
     <artifactId>was-util</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.1</version>
 
     <name>was-util</name>
     <description>Common Utils that talks to WebSphere used by was-maven-plugin and was-gradle-plugin</description>
@@ -27,7 +27,7 @@
         <url>https://github.com/orctom/was-util/</url>
         <connection>scm:git:git@github.com:orctom/was-util.git</connection>
         <developerConnection>scm:git:git@github.com:orctom/was-util.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>1.1</tag>
     </scm>
 
     <developers>
