@@ -100,7 +100,7 @@ public abstract class AbstractWebSphereServiceImpl implements IWebSphereService 
 				command.addArg(scriptArg, null);
 			}
 		} else {
-			command.addArg("-o ", task);
+			command.addArg("-o", task);
 		}
 		return command;
 	}
