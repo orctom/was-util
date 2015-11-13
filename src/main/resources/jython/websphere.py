@@ -84,10 +84,10 @@ class WebSphere:
             if "" != cluster:
                 print AdminApplication.stopApplicationOnCluster(applicationName, cluster)
             elif "" != node:
-                appManager = AdminControl.queryNames('node=' + node + ',type=Server,process=' + server + ',*')
+                appManager = AdminControl.queryNames('node=' + node + ',type=ApplicationManager,process=' + server + ',*')
                 print AdminControl.invoke(appManager, 'stopApplication', applicationName)
             else:
-                appManager = AdminControl.queryNames('type=Server,process=' + server + ',*')
+                appManager = AdminControl.queryNames('type=ApplicationManager,process=' + server + ',*')
                 print AdminControl.invoke(appManager, 'stopApplication', applicationName)
         except:
             print "FAILED to stop application:"
