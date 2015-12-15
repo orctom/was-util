@@ -1,12 +1,11 @@
 package com.orctom.was.model;
 
-import com.google.common.base.Strings;
-import com.google.common.collect.Maps;
-
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.google.common.base.Strings;
+import com.google.common.collect.Maps;
 
 /**
  * Shell Command
@@ -52,15 +51,22 @@ public class Command {
 	}
 
 	public void addArg(String name, String value) {
-		args.put(name, value);
+		args.put(name, escapeWhitespace(value));
 	}
-
+	
 	public String getBuildScriptPath() {
 		return buildScriptPath;
 	}
 
 	public void setBuildScriptPath(String buildScriptPath) {
 		this.buildScriptPath = buildScriptPath;
+	}
+	
+	private String escapeWhitespace(String path) {
+		if (path.contains(" ")) {
+			return "\"" + path + "\""; 
+		}
+		return path;
 	}
 
 	public List<String> getArgsAsList() {
@@ -86,9 +92,9 @@ public class Command {
 	public String toString() {
 		StringBuilder str = new StringBuilder();
 		if (!Strings.isNullOrEmpty(workingDir)) {
-			str.append("cd ").append(workingDir).append(" && ");
+			str.append("Working dir: ").append(workingDir).append("\n");
 		}
-		str.append(executable).append(" ");
+		str.append("Executable : ").append(executable).append("\n").append("Args       : ");
 		for (Map.Entry<String, String> entry : args.entrySet()) {
 			str.append(entry.getKey()).append(" ").append(entry.getValue()).append(" ");
 		}
