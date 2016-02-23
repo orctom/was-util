@@ -124,7 +124,7 @@ class WebSphere:
                 options += ['-MapWebModToVH', [['.*', '.*', virtualHost]]]
 
             if "" != sharedLibs:
-                options += ['-MapSharedLibForMod', ['.*', '.*', sharedLibs.replace(',', '+')]]
+                options += ['-MapSharedLibForMod', [['.*', '.*', sharedLibs.replace(',', '+')]]]
 
             print ""
             print "options: ", options
