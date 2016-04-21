@@ -107,15 +107,17 @@ class WebSphere:
             options[:0] = deployOptions.split()
 
         try:
+            serverMapping=''
             if "" != cluster:
-                serverMapping = 'WebSphere:cluster=' + cluster
-                if "" != webservers:
-                    for webserver in webservers.split(','):
-                        serverMapping += '+WebSphere:server=' + webserver.strip()
-                options += ['-cluster', cluster, '-MapModulesToServers', [['.*', '.*', serverMapping]]]
+                serverMapping += 'WebSphere:cluster=' + cluster
+                options += ['-cluster', cluster] 
             else:
-                serverMapping = 'WebSphere:server=' + server
-                options += ['-MapModulesToServers', [['.*', '.*', serverMapping]]]
+                serverMapping += 'WebSphere:server=' + server
+            
+            if "" != webservers:
+                for webserver in webservers.split(','):
+                    serverMapping += '+WebSphere:server=' + webserver.strip()
+            options += ['-MapModulesToServers', [['.*', '.*', serverMapping]]]
 
             if "" != contextRoot:
                 options += ['-contextroot', contextRoot]
