@@ -6,15 +6,15 @@ package com.orctom.was.model;
  */
 public class WebSphereServiceException extends RuntimeException {
 
-	public WebSphereServiceException(String message) {
-		super(message);
-	}
+  public WebSphereServiceException(String message) {
+    super(message);
+  }
 
-	public WebSphereServiceException( Throwable cause) {
-		super(cause);
-	}
+  public WebSphereServiceException(Throwable cause) {
+    super(cause);
+  }
 
-	public WebSphereServiceException(String message, Throwable cause) {
-		super(message, cause);
-	}
+  public WebSphereServiceException(String message, Throwable cause) {
+    super(message, cause);
+  }
 }

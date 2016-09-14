@@ -5,18 +5,18 @@ package com.orctom.was.service;
  */
 public interface IWebSphereService {
 
-	void restartServer();
+  void restartServer();
 
-	void installApplication();
+  void installApplication();
 
-	void uninstallApplication();
+  void uninstallApplication();
 
-	void startApplication();
+  void startApplication();
 
-	void stopApplication();
+  void stopApplication();
 
-	/**
-	 * uninstall-if-exists =&gt; install =&gt; restart
-	 */
-	void deploy();
+  /**
+   * uninstall-if-exists =&gt; install =&gt; restart
+   */
+  void deploy();
 }
