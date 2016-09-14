@@ -115,6 +115,9 @@ class WebSphere:
                 options += ['-cluster', cluster, '-MapModulesToServers', [['.*', '.*', serverMapping]]]
             else:
                 serverMapping = 'WebSphere:server=' + server
+                if "" != webservers:
+                    for webserver in webservers.split(','):
+                        serverMapping += '+WebSphere:server=' + webserver.strip()
                 options += ['-MapModulesToServers', [['.*', '.*', serverMapping]]]
 
             if "" != contextRoot:
