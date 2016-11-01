@@ -77,7 +77,6 @@ public abstract class AbstractWebSphereServiceImpl implements IWebSphereService 
     command.addArg("-conntype", model.getConnectorType());
     command.addArg("-host", model.getHost());
     command.addArg("-port", model.getPort());
-    command.addArg("-port", model.getPort());
     if (!Strings.isNullOrEmpty(model.getUser())) {
       command.addArg("-user", model.getUser());
       if (!Strings.isNullOrEmpty(model.getPassword())) {
